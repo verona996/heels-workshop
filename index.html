@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heels Collab Workshop with Vero & Rose</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .header h1 span {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: #d4a0a0;
+            margin-top: 4px;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        .details {
+            margin-top: 16px;
+        }
+
+        .details p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .details p:first-child {
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .price-tag {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #f5f5f5;
+            border: 1px solid #333;
+            padding: 6px 20px;
+            border-radius: 100px;
+            margin-top: 16px;
+        }
+
+        /* Form */
+        .form-section {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 28px 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group:last-of-type {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #aaa;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            color: #f5f5f5;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #d4a0a0;
+        }
+
+        input::placeholder {
+            color: #444;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: #d4a0a0;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:hover {
+            background: #c08e8e;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Thank you / payment screen */
+        .payment-section {
+            display: none;
+            text-align: center;
+        }
+
+        .payment-section.active {
+            display: block;
+        }
+
+        .form-section.hidden {
+            display: none;
+        }
+
+        .checkmark {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #1a2e1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+        }
+
+        .payment-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .payment-section .subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .payment-card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .payment-card .step-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #d4a0a0;
+            margin-bottom: 12px;
+        }
+
+        .payment-card .amount {
+            font-family: 'Syne', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .payment-card .twint-number {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f5f5f5;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .payment-card .instruction {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        .payment-card .instruction strong {
+            color: #f5f5f5;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1fad54;
+        }
+
+        .whatsapp-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        .note {
+            color: #555;
+            font-size: 12px;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                Heels Collab Workshop
+                <span>with Vero &amp; Rose</span>
+            </h1>
+            <div class="details">
+                <p>Mon 6 April &nbsp;·&nbsp; 15:00 – 17:00</p>
+                <p>The Ground, Schöneggstrasse 145, 8953 Dietikon</p>
+            </div>
+            <div class="price-tag">CHF 45</div>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="form-section" id="formSection">
+            <form id="signupForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" placeholder="+41 ..." required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Me Up</button>
+            </form>
+        </div>
+
+        <!-- Payment Instructions -->
+        <div class="payment-section" id="paymentSection">
+            <div class="checkmark">✓</div>
+            <h2>You're almost in!</h2>
+            <p class="subtitle">One last step — send the payment to secure your spot.</p>
+
+            <div class="payment-card">
+                <div class="step-label">Step 1 — Twint</div>
+                <div class="amount">CHF 45</div>
+                <div class="twint-number">+41 76 413 28 81</div>
+                <p class="instruction">
+                    Open Twint, send <strong>CHF 45</strong> to the number above.<br>
+                    In the payment message, write <strong>your full name</strong>.
+                </p>
+            </div>
+
+            <div class="payment-card">
+                <div class="step-label">Step 2 — Confirm</div>
+                <p class="instruction">
+                    Take a screenshot of the Twint payment and send it via WhatsApp to the same number. We'll confirm your spot and add you to the group.
+                </p>
+                <a href="https://wa.me/41764132881?text=Hi!%20Here%27s%20my%20Twint%20payment%20screenshot%20for%20the%20Heels%20Workshop%20%F0%9F%92%83"
+                   target="_blank" class="whatsapp-btn">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Send on WhatsApp
+                </a>
+            </div>
+
+            <p class="note">Your spot is only confirmed once we receive the Twint payment. See you on the dance floor!</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple local storage for submissions (no backend needed for now)
+        // For a production version, you'd want Formspree or similar
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const data = {
+                name: form.name.value,
+                phone: form.phone.value,
+                email: form.email.value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Send to Formspree (free tier, 50 submissions/month)
+            fetch('https://formspree.io/f/maqpgqrk', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(() => {
+                // Silent fail — still show payment screen
+            });
+
+            // Show payment section
+            document.getElementById('formSection').classList.add('hidden');
+            document.getElementById('paymentSection').classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
